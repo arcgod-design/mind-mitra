@@ -698,3 +698,185 @@ class TestMoodHistoryAPICache:
         resp_30_hit = journal_client.get("/api/v1/stats/mood-history?days=30", headers=auth_headers)
         assert resp_7_hit.headers.get("X-Cache") == "HIT"
         assert resp_30_hit.headers.get("X-Cache") == "HIT"
+
+
+# ===========================================================================
+# 6. JSON encoder edge cases
+# ===========================================================================
+
+class TestCacheJSONEncoder:
+    """Tests for the custom JSON encoder used for cache serialization."""
+
+    @pytest.mark.asyncio
+    async def test_uuid_serialization(self):
+        """UUIDs should be serialized as strings without error."""
+        from app.services.cache import _CacheJSONEncoder
+        import json
+
+        test_uuid = uuid.uuid4()
+        result = json.dumps({"id": test_uuid}, cls=_CacheJSONEncoder)
+        assert str(test_uuid) in result
+
+    @pytest.mark.asyncio
+    async def test_datetime_serialization(self):
+        """Datetimes should be serialized as ISO format strings."""
+        from app.services.cache import _CacheJSONEncoder
+        import json
+
+        now = datetime(2025, 6, 15, 12, 30, 0)
+        result = json.dumps({"ts": now}, cls=_CacheJSONEncoder)
+        assert "2025-06-15" in result
+
+    @pytest.mark.asyncio
+    async def test_date_serialization(self):
+        """Date objects should be serialized as ISO format strings."""
+        from app.services.cache import _CacheJSONEncoder
+        from datetime import date
+        import json
+
+        d = date(2025, 1, 1)
+        result = json.dumps({"d": d}, cls=_CacheJSONEncoder)
+        assert "2025-01-01" in result
+
+
+# ===========================================================================
+# 7. Edge cases: empty data, user isolation, days clamping
+# ===========================================================================
+
+class TestEdgeCases:
+    """Edge-case tests for cache behavior."""
+
+    @pytest.mark.asyncio
+    async def test_empty_journal_list_is_cached(self, mock_db, memory_cache):
+        """An empty journal list should still be cached (not treated as miss)."""
+        user_id = "user-empty-1"
+        entries = await journal_service.list_entries(user_id)
+        assert entries == []
+
+        list_key = journal_list_cache_key(user_id)
+        assert list_key in memory_cache
+        assert memory_cache[list_key] == []
+
+    @pytest.mark.asyncio
+    async def test_empty_mood_history_is_cached(self, mock_db, memory_cache):
+        """Mood history with no entries should still be cached."""
+        user_id = "user-empty-2"
+        history = await journal_service.get_mood_history(user_id, days=7)
+        assert history.entries == []
+        assert history.average_mood is None
+
+        mood_key = mood_history_cache_key(user_id, 7)
+        assert mood_key in memory_cache
+
+    @pytest.mark.asyncio
+    async def test_user_cache_isolation(self, mock_db, memory_cache):
+        """User A's cache should not leak into User B's responses."""
+        user_a = "user-iso-a"
+        user_b = "user-iso-b"
+
+        await journal_service.create_entry(
+            user_a,
+            JournalEntryCreate(mood=9, text="User A private", date=datetime.utcnow()),
+        )
+        await journal_service.list_entries(user_a)
+
+        entries_b = await journal_service.list_entries(user_b)
+        assert entries_b == []
+
+        entries_a = await journal_service.list_entries(user_a)
+        assert len(entries_a) == 1
+        assert entries_a[0].text == "User A private"
+
+    @pytest.mark.asyncio
+    async def test_mood_history_days_clamped_to_min_1(self, mock_db, memory_cache):
+        """Days < 1 should be clamped to 1."""
+        user_id = "user-clamp-1"
+        history = await journal_service.get_mood_history(user_id, days=0)
+        assert history.period_days == 1
+
+    @pytest.mark.asyncio
+    async def test_mood_history_days_clamped_to_max_365(self, mock_db, memory_cache):
+        """Days > 365 should be clamped to 365."""
+        user_id = "user-clamp-2"
+        history = await journal_service.get_mood_history(user_id, days=999)
+        assert history.period_days == 365
+
+    @pytest.mark.asyncio
+    async def test_delete_nonexistent_entry_does_not_invalidate(self, mock_db, memory_cache):
+        """Deleting an entry that doesn't exist should not clear the cache."""
+        user_id = "user-no-del"
+        await journal_service.create_entry(
+            user_id,
+            JournalEntryCreate(mood=5, text="Keep me", date=datetime.utcnow()),
+        )
+        await journal_service.list_entries(user_id)
+        list_key = journal_list_cache_key(user_id)
+        assert list_key in memory_cache
+
+        result = await journal_service.delete_entry(user_id, "nonexistent-id")
+        assert result is False
+        # Cache should still be intact since nothing was actually deleted
+        assert list_key in memory_cache
+
+
+# ===========================================================================
+# 8. Redis lifecycle tests
+# ===========================================================================
+
+class TestRedisLifecycle:
+    """Tests for Redis connection init/close/ping lifecycle."""
+
+    @pytest.mark.asyncio
+    async def test_ping_redis_returns_false_when_client_is_none(self):
+        from app.core.redis import ping_redis
+        import app.core.redis as redis_mod
+
+        original = redis_mod.redis_client
+        redis_mod.redis_client = None
+        try:
+            result = await ping_redis()
+            assert result is False
+        finally:
+            redis_mod.redis_client = original
+
+    @pytest.mark.asyncio
+    async def test_close_redis_when_no_client(self):
+        """close_redis should be a no-op when client is None."""
+        from app.core.redis import close_redis
+        import app.core.redis as redis_mod
+
+        original = redis_mod.redis_client
+        redis_mod.redis_client = None
+        try:
+            await close_redis()  # Should not raise
+        finally:
+            redis_mod.redis_client = original
+
+    @pytest.mark.asyncio
+    async def test_init_redis_skips_when_cache_disabled(self):
+        """init_redis should be a no-op when CACHE_ENABLED is False."""
+        from app.core.redis import init_redis
+        import app.core.redis as redis_mod
+
+        original = redis_mod.redis_client
+        with pytest.MonkeyPatch.context() as mp:
+            mp.setattr(settings, "CACHE_ENABLED", False)
+            redis_mod.redis_client = None
+            await init_redis()
+            assert redis_mod.redis_client is None
+        redis_mod.redis_client = original
+
+    @pytest.mark.asyncio
+    async def test_get_redis_returns_client(self):
+        """get_redis should return whatever the module-level client is."""
+        from app.core.redis import get_redis
+        import app.core.redis as redis_mod
+
+        original = redis_mod.redis_client
+        sentinel = object()
+        redis_mod.redis_client = sentinel
+        try:
+            assert get_redis() is sentinel
+        finally:
+            redis_mod.redis_client = original
+
