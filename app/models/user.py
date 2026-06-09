@@ -38,6 +38,7 @@ class UserInDB(UserBase):
     hashed_password: str
     emergency_contacts: List[EmergencyContact] = []
     is_active: bool = True
+    last_sos_sent: Optional[datetime] = None  # Added for 30-min cooldown tracking
     created_at: datetime
     updated_at: datetime
 
@@ -55,6 +56,7 @@ class User(BaseModel):
     emergency_contacts: List[EmergencyContact] = []
     profile_picture_url: Optional[str] = None
     depression_threshold_notified_at: Optional[datetime] = None
+    last_sos_sent: Optional[datetime] = None  # Added for 30-min cooldown tracking
     created_at: datetime
     updated_at: datetime
     model_config = {"from_attributes": True}
@@ -87,4 +89,4 @@ class MessageResponse(BaseModel):
 
 
 class TokenValidationResponse(BaseModel):
-    valid: bool = True 
+    valid: bool = True
