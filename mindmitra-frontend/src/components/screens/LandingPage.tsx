@@ -1,17 +1,17 @@
-import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import {
-  Leaf,
-  Sparkles,
+  BookOpen,
+  CheckCircle2,
   Heart,
-  Smile,
   HeartHandshake,
+  Leaf,
   MessageCircle,
   PhoneCall,
-  BookOpen,
   ShieldCheck,
-  CheckCircle2,
+  Smile,
+  Sparkles,
 } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 // ─── Scroll Reveal Wrapper ─────────────────────────────────────────────────
 interface RevealProps {
@@ -65,10 +65,10 @@ const Reveal: React.FC<RevealProps> = ({
 const Navbar: React.FC = () => (
   <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/90 backdrop-blur-md border-b-2 border-gray-100">
     <div className="flex items-center gap-2">
-      <div className="w-10 h-10 bg-[#ff9b71] rounded-full flex items-center justify-center text-white -rotate-12 hover:rotate-0 transition-transform duration-300">
+      <div className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center text-white -rotate-12 hover:rotate-0 transition-transform duration-300">
         <Leaf size={20} strokeWidth={2.5} />
       </div>
-      <span className="text-2xl font-extrabold text-[#191c1e] tracking-tight">
+      <span className="text-2xl font-extrabold text-gray-900 tracking-tight">
         MindMitra
       </span>
     </div>
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => (
         <a
           key={label}
           href={`#${label.toLowerCase().replace(/\s+/g, "-")}`}
-          className="text-sm font-semibold text-[#414751] hover:text-[#ff9b71] transition-colors"
+          className="text-sm font-semibold text-gray-600 hover:text-orange-400 transition-colors"
         >
           {label}
         </a>
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => (
 
     <Link
       to="/home"
-      className="bg-[#ff9b71] hover:bg-[#ff8554] text-white font-semibold text-sm py-3 px-8 rounded-full transition-all duration-300 shadow-[0_4px_14px_0_rgba(255,155,113,0.39)] hover:shadow-[0_6px_20px_rgba(255,155,113,0.23)] hover:-translate-y-1 hover:scale-105"
+      className="bg-orange-400 hover:bg-orange-500 text-white font-semibold text-sm py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-md hover:-translate-y-1 hover:scale-105"
     >
       Sign Up
     </Link>
@@ -97,33 +97,33 @@ const Navbar: React.FC = () => (
 // ─── Hero Section ──────────────────────────────────────────────────────────
 const HeroSection: React.FC = () => {
   return (
-    <section className="mt-30 hero-bg relative py-20 px-6 overflow-hidden flex flex-col md:flex-row items-center justify-center max-w-[1200px] mx-auto gap-12 rounded-4xl my-8 border-2 border-gray-100">
+    <section className="mt-32 hero-bg relative py-20 px-6 overflow-hidden flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto gap-12 rounded-3xl my-8 border-2 border-gray-100">
       {/* Blobs */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-[#ffd166] rounded-full mix-blend-multiply filter blur-3xl opacity-50 blob-shape" />
+      <div className="absolute top-10 left-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 blob-shape" />
       <div
-        className="absolute bottom-10 right-10 w-80 h-80 bg-[#c3b1e1] rounded-full mix-blend-multiply filter blur-3xl opacity-40 blob-shape"
+        className="absolute bottom-10 right-10 w-80 h-80 bg-violet-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 blob-shape"
         style={{ animationDelay: "2s" }}
       />
       <div
-        className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#b9f382] rounded-full mix-blend-multiply filter blur-3xl opacity-40 blob-shape"
+        className="absolute top-1/2 left-1/2 w-64 h-64 bg-lime-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 blob-shape"
         style={{ animationDelay: "4s" }}
       />
 
       {/* Left: Text */}
       <div className="relative z-10 flex-1 flex flex-col items-start text-left pl-4 md:pl-12">
         <div className="stagger-1 inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border-2 border-gray-100 mb-6 shadow-sm hover:shadow-md transition-shadow">
-          <Sparkles size={14} className="text-[#ff9b71] animate-pulse" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#191c1e]">
+          <Sparkles size={14} className="text-orange-400 animate-pulse" />
+          <span className="text-xs font-bold uppercase tracking-wider text-gray-900">
             Your safe space
           </span>
         </div>
 
-        <h1 className="stagger-2 text-[48px] leading-[1.1] font-extrabold text-[#191c1e] mb-6 max-w-xl tracking-tight">
+        <h1 className="stagger-2 text-5xl leading-tight font-extrabold text-gray-900 mb-6 max-w-xl tracking-tight">
           Your Caring Companion for <br />
-          <span className="text-[#00457f] relative inline-block">
+          <span className="text-blue-800 relative inline-block">
             Mental Wellness
             <svg
-              className="absolute w-full h-4 -bottom-1 left-0 text-[#ffd166]"
+              className="absolute w-full h-4 -bottom-1 left-0 text-amber-300"
               viewBox="0 0 100 20"
               preserveAspectRatio="none"
             >
@@ -141,7 +141,7 @@ const HeroSection: React.FC = () => {
           </span>
         </h1>
 
-        <p className="stagger-3 text-lg font-medium text-[#414751] mb-10 max-w-lg leading-relaxed">
+        <p className="stagger-3 text-lg font-medium text-gray-600 mb-10 max-w-lg leading-relaxed">
           A safe space that listens and understands how you feel. Real-time
           support and gentle guidance whenever you need a friend.
         </p>
@@ -149,7 +149,7 @@ const HeroSection: React.FC = () => {
         <div className="stagger-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <Link
             to="/home"
-            className="magnetic-button bg-[#00457f] hover:bg-[#003666] text-white font-bold text-lg py-4 px-8 rounded-full shadow-[0_8px_20px_rgba(0,69,127,0.2)] transition-all duration-300 w-full sm:w-auto text-center"
+            className="magnetic-button bg-blue-800 hover:bg-blue-900 text-white font-bold text-lg py-4 px-8 rounded-full shadow-xl transition-all duration-300 w-full sm:w-auto text-center"
             onMouseMove={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               const rect = el.getBoundingClientRect();
@@ -166,7 +166,7 @@ const HeroSection: React.FC = () => {
           </Link>
           <a
             href="#features"
-            className="bg-white border-2 border-gray-200 text-[#191c1e] font-bold text-lg py-4 px-8 rounded-full hover:border-[#00457f] hover:text-[#00457f] transition-all duration-300 w-full sm:w-auto text-center hover:shadow-lg hover:-translate-y-1"
+            className="bg-white border-2 border-gray-200 text-gray-900 font-bold text-lg py-4 px-8 rounded-full hover:border-blue-800 hover:text-blue-800 transition-all duration-300 w-full sm:w-auto text-center hover:shadow-lg hover:-translate-y-1"
           >
             Learn More
           </a>
@@ -175,24 +175,23 @@ const HeroSection: React.FC = () => {
 
       {/* Right: Illustration */}
       <div className="flex-1 w-full relative z-10 flex justify-center p-8 stagger-2">
-        <div className="w-full max-w-md aspect-square bg-[#b9f382] rounded-full flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(185,243,130,0.3)] relative overflow-visible border-4 border-white">
-          <div className="absolute -top-6 -right-6 w-20 h-20 bg-[#ff9b71] rounded-full flex items-center justify-center rotate-12 shadow-lg border-4 border-white hover:scale-110 hover:rotate-[24deg] transition-all duration-300">
+        <div className="w-full max-w-md aspect-square bg-lime-300 rounded-full flex flex-col items-center justify-center shadow-2xl relative overflow-visible border-4 border-white">
+          <div className="absolute -top-6 -right-6 w-20 h-20 bg-orange-400 rounded-full flex items-center justify-center rotate-12 shadow-lg border-4 border-white hover:scale-110 hover:rotate-[24deg] transition-all duration-300">
             <Heart size={28} className="text-white" fill="white" />
           </div>
-          <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#c3b1e1] rounded-full flex items-center justify-center -rotate-12 shadow-lg border-4 border-white hover:scale-110 hover:-rotate-[24deg] transition-all duration-300">
+          <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-violet-300 rounded-full flex items-center justify-center -rotate-12 shadow-lg border-4 border-white hover:scale-110 hover:-rotate-[24deg] transition-all duration-300">
             <Smile size={24} className="text-white" />
           </div>
           <span className="text-8xl mb-4 hover:scale-110 transition-transform duration-300 cursor-default select-none">
             🌻
           </span>
-          <h3 className="text-[#284d00] font-bold text-center px-8 text-xl">
+          <h3 className="text-lime-900 font-bold text-center px-8 text-xl">
             We're here for you,
             <br />
             every step.
           </h3>
         </div>
       </div>
-
     </section>
   );
 };
@@ -201,13 +200,13 @@ const HeroSection: React.FC = () => {
 const FeaturesSection: React.FC = () => (
   <section
     id="features"
-    className="py-24 px-6 max-w-[1200px] mx-auto reveal-on-scroll"
+    className="py-24 px-6 max-w-7xl mx-auto reveal-on-scroll"
   >
     <div className="text-center mb-16">
-      <h2 className="text-[36px] font-bold text-[#191c1e] mb-4 tracking-tight">
+      <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
         A Space That Understands You
       </h2>
-      <p className="text-lg font-medium text-[#414751] max-w-2xl mx-auto">
+      <p className="text-lg font-medium text-gray-600 max-w-2xl mx-auto">
         Gentle tools crafted to help you navigate your emotional landscape with
         warmth and care.
       </p>
@@ -217,21 +216,21 @@ const FeaturesSection: React.FC = () => (
       {/* Card 1 — Wide: Gentle Check-ins */}
       <Reveal
         delay={100}
-        className="glass-panel p-10 rounded-[2.5rem] flex flex-col justify-between col-span-1 md:col-span-2 lg:col-span-2 bg-[#f0f7ff] border-none"
+        className="glass-panel p-10 rounded-3xl flex flex-col justify-between col-span-1 md:col-span-2 lg:col-span-2 bg-blue-50 border-none"
       >
         <div className="relative z-10">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-[#00457f]">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-blue-800">
             <HeartHandshake size={30} />
           </div>
-          <h3 className="text-2xl font-semibold text-[#191c1e] mb-3">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-3">
             Gentle Check-ins
           </h3>
-          <p className="text-base font-medium text-[#414751] max-w-md">
+          <p className="text-base font-medium text-gray-600 max-w-md">
             We pay attention to your words and feelings to understand how you're
             really doing, processing everything safely on your own device.
           </p>
         </div>
-        <div className="mt-10 relative h-56 w-full rounded-[2rem] bg-[#ffd166] flex items-center justify-center border-4 border-white shadow-inner overflow-hidden z-10">
+        <div className="mt-10 relative h-56 w-full rounded-3xl bg-amber-300 flex items-center justify-center border-4 border-white shadow-inner overflow-hidden z-10">
           <div
             className="absolute inset-0 opacity-20"
             style={{
@@ -249,25 +248,25 @@ const FeaturesSection: React.FC = () => (
       {/* Card 2 — Supportive Chat */}
       <Reveal
         delay={200}
-        className="glass-panel p-10 rounded-[2.5rem] flex flex-col col-span-1 bg-[#fff5f0] border-none"
+        className="glass-panel p-10 rounded-3xl flex flex-col col-span-1 bg-orange-50 border-none"
       >
         <div className="relative z-10">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-[#ff9b71]">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-orange-400">
             <MessageCircle size={30} />
           </div>
-          <h3 className="text-2xl font-semibold text-[#191c1e] mb-3">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-3">
             Supportive Chat
           </h3>
-          <p className="text-base font-medium text-[#414751] flex-grow">
+          <p className="text-base font-medium text-gray-600 flex-grow">
             Warm, guided conversations to help you navigate difficult feelings,
             available whenever you need someone to talk to.
           </p>
         </div>
         <div className="mt-8 space-y-4 z-10 relative">
-          <div className="bg-white rounded-[1.5rem] rounded-tl-sm p-4 text-base font-medium text-[#191c1e] w-[85%] shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+          <div className="bg-white rounded-3xl rounded-tl-sm p-4 text-base font-medium text-gray-900 w-4/5 shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
             I'm here for you. How are you feeling today?
           </div>
-          <div className="bg-[#ff9b71] text-white rounded-[1.5rem] rounded-tr-sm p-4 text-base font-medium w-[85%] ml-auto text-right shadow-sm hover:-translate-y-1 transition-transform">
+          <div className="bg-orange-400 text-white rounded-3xl rounded-tr-sm p-4 text-base font-medium w-4/5 ml-auto text-right shadow-sm hover:-translate-y-1 transition-transform">
             I've been feeling a bit overwhelmed lately.
           </div>
         </div>
@@ -276,21 +275,21 @@ const FeaturesSection: React.FC = () => (
       {/* Card 3 — Immediate Help */}
       <Reveal
         delay={300}
-        className="glass-panel p-10 rounded-[2.5rem] flex flex-col col-span-1 bg-[#f4f0ff] border-none"
+        className="glass-panel p-10 rounded-3xl flex flex-col col-span-1 bg-violet-50 border-none"
       >
         <div className="relative z-10">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-[#c3b1e1]">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-violet-300">
             <PhoneCall size={30} />
           </div>
-          <h3 className="text-2xl font-semibold text-[#191c1e] mb-3">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-3">
             Immediate Help
           </h3>
-          <p className="text-base font-medium text-[#414751] mb-8">
+          <p className="text-base font-medium text-gray-600 mb-8">
             When things feel too heavy, we'll gently connect you with the right
             crisis support and friendly resources right away.
           </p>
         </div>
-        <div className="mt-auto h-32 w-full rounded-[2rem] bg-[#c3b1e1] flex items-center justify-center border-4 border-white z-10 relative group">
+        <div className="mt-auto h-32 w-full rounded-3xl bg-violet-300 flex items-center justify-center border-4 border-white z-10 relative group">
           <span className="text-5xl group-hover:scale-110 transition-transform duration-300 cursor-default">
             🫂
           </span>
@@ -300,29 +299,29 @@ const FeaturesSection: React.FC = () => (
       {/* Card 4 — Personal Journal (wide) */}
       <Reveal
         delay={400}
-        className="glass-panel p-10 rounded-[2.5rem] flex flex-col col-span-1 md:col-span-2 lg:col-span-2 bg-[#f0fdf4] border-none"
+        className="glass-panel p-10 rounded-3xl flex flex-col col-span-1 md:col-span-2 lg:col-span-2 bg-green-50 border-none"
       >
-        <div className="relative z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-[#4ade80]">
+        <div className="relative z-10 w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-green-400">
           <BookOpen size={30} />
         </div>
         <div className="flex flex-col md:flex-row gap-10 items-center relative z-10">
           <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#191c1e] mb-3">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">
               Your Personal Journal
             </h3>
-            <p className="text-base font-medium text-[#414751]">
+            <p className="text-base font-medium text-gray-600">
               Reflect on your days and see your growth. We'll help you spot what
               makes you feel best and celebrate your little victories.
             </p>
           </div>
           <div className="flex-1 w-full flex flex-wrap gap-3 justify-center md:justify-end">
             {[
-              { label: "Calm 🌊", cls: "text-[#00457f] border-[#d3e3ff]" },
-              { label: "Focused 🎯", cls: "text-[#ff9b71] border-[#ffeedd]" },
-              { label: "Tired 🥱", cls: "text-[#414751] border-gray-200" },
+              { label: "Calm 🌊", cls: "text-blue-800 border-blue-100" },
+              { label: "Focused 🎯", cls: "text-orange-400 border-orange-100" },
+              { label: "Tired 🥱", cls: "text-gray-600 border-gray-200" },
               {
                 label: "Grateful ✨",
-                cls: "text-[#284d00] bg-[#b9f382] border-white scale-110 rotate-2 hover:rotate-6",
+                cls: "text-lime-900 bg-lime-300 border-white scale-110 rotate-2 hover:rotate-6",
               },
             ].map(({ label, cls }) => (
               <span
@@ -352,12 +351,12 @@ const HowItWorksSection: React.FC = () => (
         backgroundSize: "32px 32px",
       }}
     />
-    <div className="max-w-[1200px] mx-auto relative z-10">
+    <div className="max-w-7xl mx-auto relative z-10">
       <div className="text-center mb-20">
-        <h2 className="text-[36px] font-bold text-[#191c1e] mb-4 tracking-tight">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
           A Simple Path to Clarity
         </h2>
-        <p className="text-lg font-medium text-[#414751] max-w-2xl mx-auto">
+        <p className="text-lg font-medium text-gray-600 max-w-2xl mx-auto">
           Three seamless steps to begin your journey toward feeling more like
           yourself.
         </p>
@@ -365,21 +364,21 @@ const HowItWorksSection: React.FC = () => (
 
       <div className="flex flex-col md:flex-row gap-12 relative">
         {/* Connecting gradient line */}
-        <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-2 bg-gradient-to-r from-[#ffd166] via-[#ff9b71] to-[#c3b1e1] rounded-full z-0 opacity-30" />
+        <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-2 bg-gradient-to-r from-amber-300 via-orange-400 to-violet-300 rounded-full z-0 opacity-30" />
 
         {[
           {
             num: "1",
-            bg: "bg-[#ffd166]",
-            textColor: "text-[#191c1e]",
-            shape: "rounded-[2rem] -rotate-6 hover:rotate-0",
+            bg: "bg-amber-300",
+            textColor: "text-gray-900",
+            shape: "rounded-3xl -rotate-6 hover:rotate-0",
             title: "Create Your Safe Space",
             desc: "Set up a private, secure profile that acts as your personal sanctuary, entirely yours alone.",
             delay: 100,
           },
           {
             num: "2",
-            bg: "bg-[#ff9b71]",
+            bg: "bg-orange-400",
             textColor: "text-white",
             shape: "rounded-full scale-110 hover:scale-125",
             title: "Express Yourself Safely",
@@ -388,9 +387,9 @@ const HowItWorksSection: React.FC = () => (
           },
           {
             num: "3",
-            bg: "bg-[#c3b1e1]",
+            bg: "bg-violet-300",
             textColor: "text-white",
-            shape: "rounded-[2rem] rotate-6 hover:rotate-0",
+            shape: "rounded-3xl rotate-6 hover:rotate-0",
             title: "Receive Warm Support",
             desc: "Get gentle exercises and friendly coping strategies crafted just for what you're going through right now.",
             delay: 300,
@@ -406,10 +405,10 @@ const HowItWorksSection: React.FC = () => (
             >
               {num}
             </div>
-            <h3 className="text-2xl font-semibold text-[#191c1e] mb-3">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">
               {title}
             </h3>
-            <p className="text-base font-medium text-[#414751]">{desc}</p>
+            <p className="text-base font-medium text-gray-600">{desc}</p>
           </Reveal>
         ))}
       </div>
@@ -421,20 +420,20 @@ const HowItWorksSection: React.FC = () => (
 const PrivacySection: React.FC = () => (
   <section
     id="about"
-    className="py-24 px-6 max-w-[1200px] mx-auto text-center reveal-on-scroll"
+    className="py-24 px-6 max-w-7xl mx-auto text-center reveal-on-scroll"
   >
-    <div className="max-w-4xl mx-auto bg-[#b9f382] p-12 md:p-16 rounded-[3rem] shadow-[0_20px_50px_rgba(185,243,130,0.2)] border-4 border-white relative overflow-hidden group hover:shadow-[0_25px_60px_rgba(185,243,130,0.3)] transition-shadow duration-500">
+    <div className="max-w-4xl mx-auto bg-lime-300 p-12 md:p-16 rounded-3xl shadow-2xl border-4 border-white relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
       <div className="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full opacity-20 group-hover:scale-110 transition-transform duration-700" />
       <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white rounded-full opacity-20 group-hover:scale-110 transition-transform duration-700" />
 
-      <div className="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center shadow-sm mb-6 group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out">
-        <ShieldCheck size={48} className="text-[#284d00]" />
+      <div className="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center shadow-sm mb-6 transition-transform duration-1000 ease-in-out">
+        <ShieldCheck size={48} className="text-lime-900" />
       </div>
 
-      <h2 className="text-[36px] font-black text-[#284d00] mb-6 tracking-tight">
+      <h2 className="text-4xl font-black text-lime-900 mb-6 tracking-tight">
         Your Privacy is Our Priority
       </h2>
-      <p className="text-xl font-medium text-[#376700]/80 mb-10 max-w-2xl mx-auto">
+      <p className="text-xl font-medium text-lime-800/80 mb-10 max-w-2xl mx-auto">
         We believe your personal journey should be completely private. We use
         top-tier security measures so that your thoughts and feelings stay
         entirely with you. We never see your personal data.
@@ -450,10 +449,22 @@ const PrivacySection: React.FC = () => (
             key={label}
             className="flex items-center gap-3 bg-white rounded-full px-6 py-4 shadow-sm hover:scale-105 hover:shadow-md transition-all cursor-default"
           >
-            <CheckCircle2 size={20} className="text-[#ff9b71]" />
-            <span className="text-sm font-bold text-[#191c1e]">{label}</span>
+            <CheckCircle2 size={20} className="text-orange-400" />
+            <span className="text-sm font-bold text-gray-900">{label}</span>
           </div>
         ))}
+      </div>
+
+      <div className="mt-10">
+        <Link
+          to="/home"
+          className="inline-block bg-lime-900 hover:bg-lime-950 text-white font-bold text-lg py-4 px-10 rounded-full shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+        >
+          Create Your Private Account
+        </Link>
+        <p className="mt-4 text-sm font-medium text-lime-800/70">
+          Free to start. No credit card required.
+        </p>
       </div>
     </div>
   </section>
@@ -463,10 +474,10 @@ const PrivacySection: React.FC = () => (
 const Footer: React.FC = () => (
   <footer className="bg-white w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center gap-8 border-t-2 border-gray-100 mt-8">
     <div className="flex items-center gap-2">
-      <div className="w-8 h-8 bg-[#ff9b71] rounded-full flex items-center justify-center text-white">
+      <div className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center text-white">
         <Leaf size={16} strokeWidth={2.5} />
       </div>
-      <span className="text-2xl font-extrabold text-[#191c1e]">MindMitra</span>
+      <span className="text-2xl font-extrabold text-gray-900">MindMitra</span>
     </div>
 
     <nav className="flex flex-col md:flex-row items-center gap-8">
@@ -481,14 +492,14 @@ const Footer: React.FC = () => (
         <a
           key={label}
           href={href}
-          className="text-sm font-bold text-[#414751] hover:text-[#ff9b71] transition-all duration-300"
+          className="text-sm font-bold text-gray-600 hover:text-orange-400 transition-all duration-300"
         >
           {label}
         </a>
       ))}
     </nav>
 
-    <p className="text-base font-medium text-[#414751]">
+    <p className="text-base font-medium text-gray-600">
       © 2026 MindMitra. All rights reserved.
     </p>
   </footer>
