@@ -253,14 +253,14 @@ The MindMitra Team
 
             message = f"""Hi {user_name},
 
-We've noticed you've been going through a difficult stretch lately. Over the past day, MindMitra has recorded {flag_count} moments of emotional distress.
+We've noticed you've been going through a difficult time lately. Over the past day, MindMitra has recorded {flag_count} moments of emotional distress.
 
-Helpful resources:
+Helpful resources for you:
 {resources_text}
 
 If you added emergency contacts in your profile, they have also been gently notified.
 
-With care,
+❤️ With care,
 The MindMitra Team
 """
 
@@ -268,13 +268,13 @@ The MindMitra Team
         <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
             <h2 style="color: #4a6fa5;">We're here for you, {user_name}</h2>
-            <p>We've noticed you've been going through a difficult stretch lately.</p>
+            <p>We've noticed you've been going through a difficult time lately.</p>
             <p>MindMitra has recorded <strong>{flag_count}</strong> moments of emotional distress.</p>
 
-            <h3 style="color: #4a6fa5;">Helpful resources</h3>
+            <h3 style="color: #4a6fa5;">Helpful resources for you</h3>
             <ul>{resources_html}</ul>
 
-            <p>With care,<br><strong>The MindMitra Team</strong></p>
+            <p>❤️ With care,<br><strong>The MindMitra Team</strong></p>
         </body>
         </html>
         """
@@ -323,7 +323,7 @@ A simple message or call from you could mean a lot right now.
 Helpful resources:
 {resources_text}
 
-With care,
+❤️ With care,
 The MindMitra Team
 """
 
@@ -336,7 +336,7 @@ The MindMitra Team
             <h3 style="color: #4a6fa5;">Helpful resources</h3>
             <ul>{resources_html}</ul>
 
-            <p>With care,<br><strong>The MindMitra Team</strong></p>
+            <p>❤️ With care,<br><strong>The MindMitra Team</strong></p>
         </body>
         </html>
         """
@@ -364,15 +364,18 @@ The MindMitra Team
 
             It's time for your daily mental wellness check-in!
 
-            Taking a few minutes to reflect on your day can help you:
+            Taking a few minutes to reflect on your day can help you clear your head, notice how you're really doing, and celebrate the small wins.
+            It will help you:
             - Understand your emotional patterns
-            - Identify triggers and coping strategies
+            - Identify triggers and coping strategies for tough feelings
             - Track your progress over time
             - Get personalized support when needed
 
             Open the MindMitra app and share how you're feeling today.
+            
+            We are here whenever you're ready.
 
-            Take care,
+            ❤️ Take care,
             The MindMitra Team
             """
 
