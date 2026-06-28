@@ -41,6 +41,10 @@ tags_metadata = [
         "name": "reminder",
         "description": "reminder management endpoints"
     },
+    {
+        "name": "report",
+        "description": "Provides the report [pdf] for past 7 days on [mood_trend, cbt_sessions, journals]"
+    }
 ]
  
 
