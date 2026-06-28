@@ -1,32 +1,32 @@
-# Contributing to MindMitra 🧠💚
+# 💚 Contributing to MindMitra 🧠
 
-Thank you for your interest in contributing to MindMitra! We appreciate contributions from developers, designers, writers, testers, and open-source enthusiasts of all experience levels.
+### Thank you for your interest in contributing to MindMitra! We appreciate contributions from developers, designers, writers, testers, and open-source enthusiasts of all experience levels.
 
 This guide explains how to set up the project locally, contribute effectively, and submit high-quality pull requests.
 
 ---
 
-# Table of Contents
+## Table of Contents
 
-* Getting Started
-* Prerequisites
-* Local Development Setup
-* Environment Variables
-* MongoDB Setup
-* How to Contribute
-* Testing
-* Branch Naming Convention
-* Issue Guidelines
-* Pull Request Guidelines
-* Pull Request Checklist
-* Code of Conduct
-* SSoC26 Contributors
+* [Getting Started](#getting-started)
+* [Prerequisites](#prerequisites)
+* [Local Development Setup](#local-development-setup)
+* [Environment Variables](#environment-variables)
+* [MongoDB Local Setup](#mongodb-local-setup)
+* [How to Contribute](#how-to-contribute)
+* [Testing](#testing)
+* [Branch Naming Convention](#branch-naming-convention)
+* [Issue Guidelines](#issue-guidelines)
+* [Pull Request Guidelines](#pull-request-guidelines)
+* [Pull Request Checklist](#pull-request-checklist)
+* [Code of Conduct](#code-of-conduct)
+* <a href="#ssoc26-contributors">SSoC26 Contributors</a>
 
 ---
 
-# Getting Started
+## Getting Started
 
-## Prerequisites
+### Prerequisites
 
 Before setting up the project, ensure the following tools are installed:
 
@@ -115,7 +115,7 @@ npm run dev
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 MindMitra uses a `.env` file to manage application configuration.
 
@@ -147,7 +147,7 @@ cp env.example .env
 
 ---
 
-# MongoDB Local Setup
+## MongoDB Local Setup
 
 Ensure MongoDB is installed and running before starting the backend.
 
@@ -181,7 +181,7 @@ If the MongoDB shell opens successfully, your local database server is running c
 
 ---
 
-# How to Contribute
+## How to Contribute
 
 ## Step 1 — Find an Issue
 
@@ -263,7 +263,7 @@ Open a Pull Request against the `main` branch.
 
 ---
 
-# Testing
+## Testing
 
 MindMitra uses **pytest** for backend testing.
 
@@ -295,7 +295,7 @@ Please ensure all tests pass successfully before opening a Pull Request.
 
 ---
 
-# Branch Naming Convention
+## Branch Naming Convention
 
 Use one of the following naming formats:
 
@@ -325,7 +325,7 @@ refactor/improve-api-structure
 
 ---
 
-# Issue Guidelines
+## Issue Guidelines
 
 * Do not create duplicate issues.
 * Search existing issues before opening a new one.
@@ -335,7 +335,7 @@ refactor/improve-api-structure
 
 ---
 
-# Pull Request Guidelines
+## Pull Request Guidelines
 
 * Link related issues using `Closes #issue_number`.
 * Keep PRs focused on a single feature or fix.
@@ -368,7 +368,7 @@ Closes #
 
 ---
 
-# Pull Request Checklist
+## Pull Request Checklist
 
 Before submitting your PR, ensure that:
 
@@ -383,7 +383,7 @@ Before submitting your PR, ensure that:
 
 ---
 
-# Code of Conduct
+## Code of Conduct
 
 * Be respectful and welcoming to all contributors.
 * Avoid spam, self-promotion, and off-topic discussions.
@@ -392,7 +392,7 @@ Before submitting your PR, ensure that:
 
 ---
 
-# SSoC26 Contributors
+## SSoC26 Contributors
 
 This project is a part of **Social Summer of Code 2026 (SSoC26)**.
 
@@ -401,14 +401,14 @@ This project is a part of **Social Summer of Code 2026 (SSoC26)**.
 * The highest-quality contribution will be merged.
 * Active contributors will be prioritized during reviews.
 
-## Project Admin & Mentor
+### Project Admin & Mentor
 
 **Gaurav Kaushik**
 
 * GitHub: https://github.com/1809gaurav
 * LinkedIn: https://www.linkedin.com/in/gaurav-kaushik1809
 
-## Mentor
+### Mentor
 
 **Srijita Chakraborty**
 
