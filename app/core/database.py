@@ -59,6 +59,17 @@ async def create_indexes():
         # Emergency contacts indexes
         await database.emergency_contacts.create_index("user_id")
         
+        # Exercises indexes
+        await database.exercises.create_index("id", unique=True)
+        await database.exercises.create_index("type")
+        
+        # Exercise completions indexes
+        await database.exercise_completions.create_index("user_id")
+        await database.exercise_completions.create_index(
+            [("user_id", 1), ("exercise_id", 1)],
+            unique=True
+        )
+        
         logger.info("Database indexes created successfully")
         
     except Exception as e:
